@@ -17,42 +17,40 @@ public class Hospital implements java.io.Serializable {
 		h.employees = new Care[4];
 		h.patients = new Patient[3];
 		
-		h.employees[0]=new Doctor("John","Doe",30,"M","MD","active");
-		h.employees[1]= new Nurse("Jane","Doe",25,"F",true);
-		h.employees[2]= new Doctor("Jim","Beam",50,"M","GP","inactive");
-		h.employees[3]= new Nurse("Sue","Smith",35,"F",false);
-
-		BloodPressure bp = new BloodPressure();
-		h.patients[0]=new Patient("Patient1","Doe",30,"M","head",bp);
-		h.patients[1]=new Patient("Patient2","Doe",25,"F","toe",bp);
-		h.patients[2]=new Patient("Patient3","Doe",50,"M","throat",bp);
-		
-		System.out.println(h.patients[0].first+h.patients[0].last);
-		
-        try {
-            FileOutputStream fileOut = new FileOutputStream("employee.data");
-            ObjectOutputStream out = new ObjectOutputStream(fileOut);
-            out.writeObject(h);
-            out.close();
-            fileOut.close();
-            System.out.println("Serialized data is saved in employee.data");
-        } catch (IOException ex) {
-            System.out.println(ex);
-        }
-        
-        try {
-            FileInputStream fileIn = new FileInputStream("employee.data");
-            ObjectInputStream in = new ObjectInputStream(fileIn);
-            h = (Hospital) in.readObject();
-            //c = (Cat) in.readObject();
-            in.close();
-            fileIn.close();
-        } catch (IOException ex) {
-            System.out.println(ex);
-        } catch (ClassNotFoundException ex) {
-             System.out.println(ex);
-        }
-        
+//      h.employees[0]=new Doctor("John","Doe",30,"M","MD","active");
+//      h.employees[1]= new Nurse("Jane","Doe",25,"F",true);
+//      h.employees[2]= new Doctor("Jim","Beam",50,"M","GP","inactive");
+//      h.employees[3]= new Nurse("Sue","Smith",35,"F",false);
+//      BloodPressure bp = new BloodPressure();
+//      h.patients[0]=new Patient("Patient1","Doe",30,"M","head",bp);
+//      h.patients[1]=new Patient("Patient2","Doe",25,"F","toe",bp);
+//      h.patients[2]=new Patient("Patient3","Doe",50,"M","throat",bp);
+      
+//      System.out.println(h.patients[0].first+h.patients[0].last);
+             
+      try {
+          FileInputStream fileIn = new FileInputStream("employee.data");
+          ObjectInputStream in = new ObjectInputStream(fileIn);
+          h = (Hospital) in.readObject();
+          in.close();
+          fileIn.close();
+          System.out.println("Data read from file emplyee.data");
+      } catch (IOException ex) {
+          System.out.println(ex);
+      } catch (ClassNotFoundException ex) {
+           System.out.println(ex);
+      }
+    
+    try {
+        FileOutputStream fileOut = new FileOutputStream("employee.data");
+        ObjectOutputStream out = new ObjectOutputStream(fileOut);
+        out.writeObject(h);
+        out.close();
+        fileOut.close();
+        System.out.println("Serialized data is saved in employee.data");
+    } catch (IOException ex) {
+        System.out.println(ex);
+    }              
         
 	}
 
